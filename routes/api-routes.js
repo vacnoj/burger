@@ -16,7 +16,7 @@ module.exports = function(app) {
 
   // GET route for getting all of the burgers
   app.get("/api/burgers", function(req, res) {
-    db.Todo.findAll({}).then(function(results) {
+    db.Burger.findAll({}).then(function(results) {
       
       res.json(results);
     });
@@ -25,13 +25,13 @@ module.exports = function(app) {
     // });
   });
 
-  // POST route for saving a new todo. We can create a todo using the data on req.body
+  // POST route for saving a new Burger. We can create a Burger using the data on req.body
   app.post("/api/burgers", function(req, res) {
-    // orm.addTodo(req.body, function(results) {
+    // orm.addBurger(req.body, function(results) {
     //   res.json(results);
     console.log(req.body);
-    db.Todo.create({
-      text: req.body.text,
+    db.Burger.create({
+      burger_name: req.body.burger_name,
       devoured: req.body.devoured
     }).then(function(results) {
       res.json(results);
@@ -39,13 +39,13 @@ module.exports = function(app) {
     // });
   });
 
-  // DELETE route for deleting burgers. We can access the ID of the todo to delete in
+  // DELETE route for deleting burgers. We can access the ID of the Burger to delete in
   // req.params.id
   app.delete("/api/burgers/:id", function(req, res) {
-    // orm.deleteTodo(req.params.id, function(results) {
+    // orm.deleteBurger(req.params.id, function(results) {
     //   res.json(results);
     // });
-    db.Todo.destroy({
+    db.Burger.destroy({
       where : {
         id :req.params.id
       }
@@ -54,13 +54,13 @@ module.exports = function(app) {
       });
   });
 
-  // PUT route for updating burgers. We can access the updated todo in req.body
+  // PUT route for updating burgers. We can access the updated Burger in req.body
   app.put("/api/burgers", function(req, res) {
-    // orm.editTodo(req.body, function(results) {
+    // orm.editBurger(req.body, function(results) {
     //   res.json(results);
     // });
-    db.Todo.update(
-      {text: req.body.text,
+    db.Burger.update(
+      {burger_name: req.body.burger_name,
         devoured: req.body.devoured
       }, {where : {
         id: req.body.id
