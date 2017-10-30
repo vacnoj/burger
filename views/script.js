@@ -58,7 +58,8 @@ $(document).ready(function() {
   function toggleComplete(event) {
     event.stopPropagation();
     var todo = $(this).parent().data("todo");
-    todo.complete = !todo.complete;
+    console.log(todo);
+    todo.devoured = !todo.devoured;
     updateTodo(todo);
   }
 
@@ -112,6 +113,8 @@ $(document).ready(function() {
     $newInputRow.data("todo", todo);
     if (todo.devoured) {
       $newInputRow.find("span").css("text-decoration", "line-through");
+      $newInputRow.append('<span>DEVOURED!</span>');
+
     }
     return $newInputRow;
   }
